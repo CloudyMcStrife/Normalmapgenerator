@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Quelldateien\View">
+      <UniqueIdentifier>{678d0b1b-34bd-42c6-9bcf-7e3d7d8d6a65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Presenter">
+      <UniqueIdentifier>{0e737689-7871-4a4f-9fdd-b3b311b65a43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Model">
+      <UniqueIdentifier>{3b4b93be-3ac0-44ac-a3c1-5f118413c265}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Model">
+      <UniqueIdentifier>{2a6b90a1-f0e9-4c9e-a05d-66ab59c8db9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Presenter">
+      <UniqueIdentifier>{b9168309-5cef-4768-b0e5-daa463049311}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\View">
+      <UniqueIdentifier>{b208058d-f1cd-49b4-b126-6874564006f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\GUI_Objects">
+      <UniqueIdentifier>{dd5274b2-4dc1-460d-b092-f892d488e86c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Math">
+      <UniqueIdentifier>{df8a0863-e587-4a69-b432-f2a918206c44}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="windowHelper.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Quelldateien\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="MainPresenter.cpp">
+      <Filter>Quelldateien\Presenter</Filter>
+    </ClCompile>
+    <ClCompile Include="MainView.cpp">
+      <Filter>Quelldateien\View</Filter>
+    </ClCompile>
+    <ClCompile Include="button_group.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="control_point.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="math.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="windowHelper.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Headerdateien\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="MainPresenter.h">
+      <Filter>Headerdateien\Presenter</Filter>
+    </ClInclude>
+    <ClInclude Include="MainView.h">
+      <Filter>Headerdateien\View</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="button_group.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="state.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="control_point.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="math.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
