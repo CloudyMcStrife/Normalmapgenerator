@@ -3,7 +3,7 @@
 Model::Model()
 {
 	hm_state = states::PLANE;
-	controlPoints = std::vector<control_point>();
+	m_controlPoints = std::vector<control_point>();
 }
 
 
@@ -32,27 +32,31 @@ void Model::setHM_PixelAt(int x, int y, nana::color color){
 }
 
 void Model::addControlPoint(int x, int y){
-	controlPoints.push_back(control_point(x, y, nana::colors::red));
+	m_controlPoints.push_back(control_point(x, y, nana::colors::red));
 }
 
 int Model::getCtrlPoint_X(int index){
-	return controlPoints[index].getX();
+	return m_controlPoints[index].getX();
 }
 
 int Model::getCtrlPoint_Y(int index){
-	return controlPoints[index].getY();
+	return m_controlPoints[index].getY();
 }
 
 void Model::setCtrlPoint_X(int index, int x){
-	controlPoints[index].setX(x);
+	m_controlPoints[index].setX(x);
 }
 
 void Model::setCtrlPoint_Y(int index, int y){
-	controlPoints[index].setY(y);
+	m_controlPoints[index].setY(y);
 }
 
 int Model::getCtrlSize(){
-	return controlPoints.size();
+	return m_controlPoints.size();
+}
+
+void Model::clearCtrlPoints(){
+	m_controlPoints.clear();
 }
 
 nana::paint::pixel_buffer Model::getHM_PixelBuffer(){

@@ -42,6 +42,8 @@ public:
 
 	glm::vec2 getSplineMiddlePoint(nana::paint::graphics&);
 
+	int size();
+
 private:
 	MainView* m_view;
 	Model* m_model;

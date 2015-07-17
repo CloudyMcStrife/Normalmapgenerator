@@ -93,25 +93,7 @@ void MainView::initializeView(){
 	
 	m_image = new nana::drawing(m_imageLabel);
 	m_heightMap = new nana::drawing(m_HMLabel);
-	
-}
 
-void MainView::setImageHandle(nana::paint::image& img){
-
-	m_image->clear();
-
-	calculateLabelSize(img);
-
-	m_image->draw([&](nana::paint::graphics& graph)
-	{
-		img.stretch(img.size(), graph, nana::rectangle(nana::size(imageWidth, imageHeight)));
-	});
-	
-	m_image->draw([&](nana::paint::graphics& graph){
-		m_presenter->drawSpline(graph);
-	});
-	
-	m_image->update();
 	m_imageLabel.events().mouse_down([&](nana::arg_mouse mouse){
 		drag = true;
 		m_presenter->activateDragCtrlPoint(mouse.pos.x, mouse.pos.y);
@@ -127,20 +109,31 @@ void MainView::setImageHandle(nana::paint::image& img){
 			m_presenter->moveCtrlPoint(mouse.pos.x, mouse.pos.y);
 			m_image->update();
 		}
-		
-		std::cout << drag << " " << m_presenter->ctrlPointDragged << std::endl;
 	});
 
 	m_imageLabel.events().click([&](nana::arg_mouse mouse){
 		m_presenter->imgLabelClicked(mouse.pos.x, mouse.pos.y);
+		std::cout << m_presenter->size() << std::endl;
 		m_image->update();
-		//if(m_model.getControlPoints().size() > 4 && !splineGenerated)
-			//m_presenter->drawSpline();
-		//else if(!splineGenerated)
-			//m_presenter->drawControlPoint(click.x, click.y);
 	});
-
 	
+}
+
+void MainView::setImageHandle(nana::paint::image& img){
+	m_image->clear();
+
+	calculateLabelSize(img);
+
+	m_image->draw([&](nana::paint::graphics& graph)
+	{
+		img.stretch(img.size(), graph, nana::rectangle(nana::size(imageWidth, imageHeight)));
+	});
+	
+	m_image->draw([&](nana::paint::graphics& graph){
+		m_presenter->drawSpline(graph);
+	});
+	
+	m_image->update();
 }
 
 void MainView::initializeHeightMap(){

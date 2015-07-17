@@ -29,6 +29,8 @@ public:
 	void setCtrlPoint_Y(int, int);
 
 	int getCtrlSize();
+
+	void clearCtrlPoints();
 	//std::vector<Pixel> getImagePixelData();
 	//std::vector<Pixel> getMaskedPixelData();
 	//void calculateMaskedPixels(Spline);
@@ -42,6 +44,6 @@ private:
 	
 	states::HM_State hm_state;
 
-	std::vector<control_point> controlPoints;
+	std::vector<control_point> m_controlPoints;
 };
 

@@ -23,7 +23,13 @@ void MainPresenter::setView(MainView* view){
 	m_view = view;
 }
 
+int MainPresenter::size(){
+	return m_model->getCtrlSize();
+}
+#include <iostream>
 void MainPresenter::loadImage(nana::string file){
+	m_model->clearCtrlPoints();
+	std::cout << m_model->getCtrlSize() << std::endl;
 	img = nana::paint::image(file);
 	m_view->setImageHandle(img);
 }
@@ -82,15 +88,12 @@ void MainPresenter::calcTangents(glm::mat4 left, glm::mat4 right, glm::mat2x4 po
 }
 
 void MainPresenter::activateDragCtrlPoint(int x, int y){
-	std::cout << x << " " << y << std::endl;
 	for (int i = 0; i < m_model->getCtrlSize(); ++i){
 		
 		int ctrl_x = m_model->getCtrlPoint_X(i);
 		int ctrl_y = m_model->getCtrlPoint_Y(i);
-		std::cout << ctrl_x << " " << ctrl_y << std::endl;
 		bool xrange = (x >= (ctrl_x - CTRL_POINT_WIDTH*0.5) && x <= (ctrl_x + CTRL_POINT_WIDTH*0.5));
 		bool yrange = (y >= (ctrl_y - CTRL_POINT_HEIGHT*0.5) && y <= (ctrl_y + CTRL_POINT_HEIGHT*0.5));
-		std::cout << xrange << " " << yrange << std::endl;
 		if (xrange && yrange){
 			ctrlPointDragged = i;
 			return;
@@ -126,53 +129,9 @@ bool MainPresenter::pointInTriangle(glm::vec2 a, glm::vec2 b, glm::vec2 c, glm::
 	return (u >= 0) && (v >= 0) && (u + v < 1);
 }
 
-glm::vec2 getIntersectionPoint(glm::vec2 point1, glm::vec2 direction1, glm::vec2 point2, glm::vec2 direction2){
-	
-	glm::vec2 res, v_min, v_mul;
-	v_min = point2 - point1;
-	v_mul = (point2+direction2) * -1.0f;
-	double D_s = v_min.x * v_mul.y - v_min.y * v_mul.x;
-	glm::vec2 m_v2 = (point1 + direction1);
-	float D = m_v2.x * v_mul.y - m_v2.y * v_mul.x;
-	float s = D_s / D;
-	//Ich weiß, dass ich hier noch prüfen müsste ob die beiden parallel liegen, weil sonst eine Division durch 0 auftritt.
-	res = point1 + (m_v2 * s);
-	return res;
-	
-}
-
 //Da es im Moment nur 4 Punkte gibt, ist diese Methode ok
 glm::vec2 MainPresenter::getSplineMiddlePoint(nana::paint::graphics& g){
 	std::vector<glm::vec2> directionVecs;
-	/*for (int i = 0; i < m_model->getCtrlSize()-1; ++i){
-		for (int j = (i+1); j < m_model->getCtrlSize(); ++j){
-			glm::vec2 pointi(m_model->getCtrlPoint_X(i), m_model->getCtrlPoint_Y(i));
-			glm::vec2 pointj(m_model->getCtrlPoint_X(j), m_model->getCtrlPoint_Y(j));
-			glm::vec2 directionVec = pointj - pointi;
-			directionVecs.push_back(directionVec);
-		}
-	}*/
-	/*
-	for (int i = 0; i < 4; ++i){
-		glm::vec2 point1(m_model->getCtrlPoint_X(i), m_model->getCtrlPoint_Y(i));
-		glm::vec2 point2(m_model->getCtrlPoint_X((i+1)%4), m_model->getCtrlPoint_Y((i+1)%4));
-		glm::vec2 dir(0);
-		if ((i % 2) == 0){
-			dir = point2 - point1;
-		}else{
-			dir = -(point2 - point1);
-		}
-		directionVecs.push_back(dir);
-	}
-
-	glm::vec2 middlePoint(m_model->getCtrlPoint_X(0), m_model->getCtrlPoint_Y(0));
-	std::cout << "Middle: " << middlePoint.x << " " << middlePoint.y << std::endl;
-	//int size = directionVecs.size();
-	for (int k = 0; k < directionVecs.size(); ++k){
-		middlePoint += ((directionVecs[k]) * 0.25f);
-		std::cout << k << ": " << directionVecs[k].x << " " << directionVecs[k].y << std::endl;
-		std::cout << k << ": " << directionVecs[k].x*0.25f << " " << directionVecs[k].y*0.25f << std::endl;
-	}*/
 
 	glm::vec2 middlePoint;
 
@@ -198,11 +157,13 @@ glm::vec2 MainPresenter::getSplineMiddlePoint(nana::paint::graphics& g){
 	glm::vec2 t1MiddlePoints[3];
 	glm::vec2 t2MiddlePoints[3];
 
+	int width = CTRL_POINT_WIDTH / 2;
+	int height = CTRL_POINT_HEIGHT / 2;
 	for (int i = 0; i < 3; ++i){
-		t1MiddlePoints[i] = triangle1[i] + (triangle1[i] - triangle1[(i + 1) % 3]) * 0.5f;
-		t2MiddlePoints[i] = triangle2[i] + (triangle2[i] - triangle2[(i + 1) % 3]) * 0.5f;
-		g.round_rectangle(nana::rectangle(t1MiddlePoints[i].x, t1MiddlePoints[i].y, CTRL_POINT_WIDTH, CTRL_POINT_HEIGHT), CTRL_POINT_WIDTH, CTRL_POINT_HEIGHT, nana::colors::black, false, nana::colors::red);
-		g.round_rectangle(nana::rectangle(t2MiddlePoints[i].x, t2MiddlePoints[i].y, CTRL_POINT_WIDTH, CTRL_POINT_HEIGHT), CTRL_POINT_WIDTH, CTRL_POINT_HEIGHT, nana::colors::black, false, nana::colors::red);
+		t1MiddlePoints[i] = triangle1[i] + (triangle1[(i + 1) % 3] - triangle1[i]) * 0.5f;
+		t2MiddlePoints[i] = triangle2[i] + (triangle2[(i + 1) % 3] - triangle2[i]) * 0.5f;
+		g.round_rectangle(nana::rectangle(t1MiddlePoints[i].x - width / 2, t1MiddlePoints[i].y - height / 2, width, height), width, height, nana::colors::black, true, nana::colors::red);
+		g.round_rectangle(nana::rectangle(t2MiddlePoints[i].x - width / 2, t2MiddlePoints[i].y - height / 2, width, height), width, height, nana::colors::black, true, nana::colors::blue_violet);
 	}
 	
 	glm::vec2 dirT1[3];
@@ -210,13 +171,24 @@ glm::vec2 MainPresenter::getSplineMiddlePoint(nana::paint::graphics& g){
 	
 	for (int i = 0; i < 3; ++i){
 		dirT1[i] = t1MiddlePoints[(i + 1) % 3] - triangle1[i];
+		g.line(nana::point(triangle1[i].x, triangle1[i].y), nana::point(t1MiddlePoints[(i + 1) % 3].x, t1MiddlePoints[(i + 1) % 3].y));
 		dirT2[i] = t2MiddlePoints[(i + 1) % 3] - triangle2[i];
+		g.line(nana::point(triangle2[i].x, triangle2[i].y), nana::point(t2MiddlePoints[(i + 1) % 3].x, t2MiddlePoints[(i + 1) % 3].y));
 	}
-	
-	glm::vec2 intersectionPoint = getIntersectionPoint(triangle1[0], dirT1[0], triangle1[1], dirT1[1]);
-	g.round_rectangle(nana::rectangle(intersectionPoint.x, intersectionPoint.y, CTRL_POINT_WIDTH, CTRL_POINT_HEIGHT), CTRL_POINT_WIDTH, CTRL_POINT_HEIGHT, nana::colors::black, false, nana::colors::red);
 
+	glm::vec2 t1MiddlePoint;
+	glm::vec2 t2MiddlePoint;
+
+	t1MiddlePoint.x = (1.0f / 3.0f) * (triangle1[0].x + triangle1[1].x + triangle1[2].x);
+	t1MiddlePoint.y = (1.0f / 3.0f) * (triangle1[0].y + triangle1[1].y + triangle1[2].y);
+
+	t2MiddlePoint.x = (1.0f / 3.0f) * (triangle2[0].x + triangle2[1].x + triangle2[2].x);
+	t2MiddlePoint.y = (1.0f / 3.0f) * (triangle2[0].y + triangle2[1].y + triangle2[2].y);
+
+	g.round_rectangle(nana::rectangle(t1MiddlePoint.x - width / 2, t1MiddlePoint.y - height / 2, width, height), width, height, nana::colors::black, false, nana::colors::black);
+	g.round_rectangle(nana::rectangle(t2MiddlePoint.x - width / 2, t2MiddlePoint.y - height / 2, width, height), width, height, nana::colors::black, false, nana::colors::black);
 	
+	middlePoint = t1MiddlePoint + 0.5f*(t2MiddlePoint - t1MiddlePoint);
 	return middlePoint;
 
 }
@@ -277,8 +249,7 @@ void MainPresenter::drawSpline(nana::paint::graphics& g){
 
 			g.line(nana::point(oldPoint.x, oldPoint.y), nana::point(points[0][(i + 1) % 4], points[1][(i + 1) % 4]), nana::colors::green);
 			glm::vec2 middle = getSplineMiddlePoint(g);
-			g.round_rectangle(nana::rectangle(middle.x, middle.y, 10, 10), 10, 10, nana::colors::blanched_almond, true, nana::colors::alice_blue);
-			std::cout << middle.x << " " << middle.y << std::endl;
+			g.round_rectangle(nana::rectangle(middle.x-5, middle.y-5, 10, 10), 10, 10, nana::colors::blanched_almond, true, nana::colors::alice_blue);
 		}															
 	}
 
