@@ -1,16 +1,26 @@
-﻿Build started 17.07.2015 15:43:27.
+﻿Build started 17.07.2015 17:40:59.
      1>Project "C:\Users\Gimmillaro Fabio\Desktop\Projekte\NormalMapGenerator\NormalMapGenerator\NormalMapGenerator.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I"C:\Program Files\ImageMagick-6.9.1-Q8\include" /I"C:\Users\Gimmillaro Fabio\Desktop\Programme\nana\include" /I"C:\Users\Gimmillaro Fabio\Desktop\Wichtige  Ordner\GDW_CPP\gdw_ss14_cpp\Libs\glm-0.9.5.4\include" /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt MainView.cpp
-         MainView.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I"C:\Program Files\ImageMagick-6.9.1-Q8\include" /I"C:\Users\Gimmillaro Fabio\Desktop\Programme\nana\include" /I"C:\Users\Gimmillaro Fabio\Desktop\Wichtige  Ordner\GDW_CPP\gdw_ss14_cpp\Libs\glm-0.9.5.4\include" /Zi /nologo /W3 /WX- /O2 /Oi /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt MainPresenter.cpp
+         MainPresenter.cpp
      1>c:\program files\imagemagick-6.9.1-q8\include\magick/pixel-accessor.h(219): warning C4244: '=' : conversion from 'double' to 'MagickCore::MagickRealType', possible loss of data
-     1>MainView.cpp(69): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
-     1>MainView.cpp(157): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>MainView.cpp(158): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>MainView.cpp(161): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>MainView.cpp(162): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>MainView.cpp(165): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
-     1>MainView.cpp(166): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>MainPresenter.cpp(165): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>MainPresenter.cpp(166): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>MainPresenter.cpp(174): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>MainPresenter.cpp(176): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>MainPresenter.cpp(188): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>MainPresenter.cpp(189): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>MainPresenter.cpp(201): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>MainPresenter.cpp(202): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>MainPresenter.cpp(244): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>MainPresenter.cpp(250): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>MainPresenter.cpp(252): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>MainPresenter.cpp(260): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+     1>MainPresenter.cpp(261): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+     1>MainPresenter.cpp(283): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>MainPresenter.cpp(290): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>MainPresenter.cpp(294): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+     1>MainPresenter.cpp(295): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Gimmillaro Fabio\Desktop\Projekte\NormalMapGenerator\x64\Release\NormalMapGenerator.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\Program Files\ImageMagick-6.9.1-Q8\lib" /LIBPATH:"C:\Users\Gimmillaro Fabio\Desktop\Programme\nana\build\bin\vc2013" /LIBPATH:"C:\Users\Gimmillaro Fabio\Desktop\Wichtige  Ordner\GDW_CPP\gdw_ss14_cpp\GlewLib\build" nana_Release_x64.lib GlewLib.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Gimmillaro Fabio\Desktop\Projekte\NormalMapGenerator\x64\Release\NormalMapGenerator.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Gimmillaro Fabio\Desktop\Projekte\NormalMapGenerator\x64\Release\NormalMapGenerator.lib" /MACHINE:X64 x64\Release\button_group.obj
          x64\Release\control_point.obj
@@ -27,4 +37,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:45.20
+Time Elapsed 00:00:28.26

@@ -206,7 +206,7 @@ void MainPresenter::drawSpline(nana::paint::graphics& g){
 		hermiteLeft(_hermiteLeft);
 		glm::mat4 _hermiteRight(0);
 		hermiteRight(_hermiteRight);
-		
+
 		double step = 1.0 / 32.0;
 
 		glm::mat2x4 tangents(0);
@@ -249,8 +249,45 @@ void MainPresenter::drawSpline(nana::paint::graphics& g){
 
 			g.line(nana::point(oldPoint.x, oldPoint.y), nana::point(points[0][(i + 1) % 4], points[1][(i + 1) % 4]), nana::colors::green);
 			glm::vec2 middle = getSplineMiddlePoint(g);
-			g.round_rectangle(nana::rectangle(middle.x-5, middle.y-5, 10, 10), 10, 10, nana::colors::blanched_almond, true, nana::colors::alice_blue);
-		}															
+			g.round_rectangle(nana::rectangle(middle.x - 5, middle.y - 5, 10, 10), 10, 10, nana::colors::blanched_almond, true, nana::colors::alice_blue);
+		}
+	}
+
+
+
+
+	for (int i = 0; i < m_model->getCtrlSize(); ++i){
+		int x = m_model->getCtrlPoint_X(i) - CTRL_POINT_WIDTH*0.5;
+		int y = m_model->getCtrlPoint_Y(i) - CTRL_POINT_HEIGHT*0.5;
+		g.round_rectangle(nana::rectangle(x, y, CTRL_POINT_WIDTH, CTRL_POINT_HEIGHT), CTRL_POINT_WIDTH, CTRL_POINT_HEIGHT, nana::colors::black, false, nana::colors::red);
+	}
+}
+
+void MainPresenter::drawRect(nana::paint::graphics& g){
+	if (m_model->getCtrlSize() >= 4){
+
+		for (int i = 0; i < 4; ++i){
+
+			glm::vec2 point = glm::vec2(m_model->getCtrlPoint_X(i), m_model->getCtrlPoint_Y(i));
+			glm::vec2 oldPoint = point;
+			glm::vec2 endPoint = glm::vec2(m_model->getCtrlPoint_X((i + 1) % 4), m_model->getCtrlPoint_Y((i + 1) % 4));
+
+			glm::vec2 dir = endPoint - point;
+			bool drawLine = true;
+
+			float step = 1.0f / 32.0f;
+
+			for (float t = 0.0f; t < 1.0f; t += step){
+				glm::vec2 newPoint = point + t*dir;
+				if (drawLine)
+					g.line(nana::point(oldPoint.x, oldPoint.y), nana::point(newPoint.x, newPoint.y));
+
+				oldPoint = newPoint;
+				drawLine = !drawLine;
+			}
+		}
+		glm::vec2 middle = getSplineMiddlePoint(g);
+		g.round_rectangle(nana::rectangle(middle.x - 5, middle.y - 5, 10, 10), 10, 10, nana::colors::blanched_almond, true, nana::colors::alice_blue);
 	}
 
 	for (int i = 0; i < m_model->getCtrlSize(); ++i){

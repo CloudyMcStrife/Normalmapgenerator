@@ -130,7 +130,7 @@ void MainView::setImageHandle(nana::paint::image& img){
 	});
 	
 	m_image->draw([&](nana::paint::graphics& graph){
-		m_presenter->drawSpline(graph);
+		m_presenter->drawRect(graph);
 	});
 	
 	m_image->update();

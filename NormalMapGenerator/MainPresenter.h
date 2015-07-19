@@ -25,6 +25,7 @@ public:
 	bool isSpriteSheet();
 
 	void drawSpline(nana::paint::graphics&);
+	void drawRect(nana::paint::graphics&);
 
 	void calcTangents(glm::mat4, glm::mat4, glm::mat2x4, glm::mat2x4&);
 
