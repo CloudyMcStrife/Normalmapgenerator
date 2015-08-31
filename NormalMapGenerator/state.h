@@ -12,4 +12,11 @@ namespace states{
 		BOTTOM
 	};
 
+	enum D_State{
+		BEZIER,
+		SPLINE,
+		RECT,
+		CIRCLE,
+	};
+
 }

@@ -31,12 +31,6 @@
     <Filter Include="Headerdateien\View">
       <UniqueIdentifier>{b208058d-f1cd-49b4-b126-6874564006f5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Headerdateien\GUI_Objects">
-      <UniqueIdentifier>{dd5274b2-4dc1-460d-b092-f892d488e86c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Headerdateien\Math">
-      <UniqueIdentifier>{df8a0863-e587-4a69-b432-f2a918206c44}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -55,12 +49,6 @@
       <Filter>Quelldateien\View</Filter>
     </ClCompile>
     <ClCompile Include="button_group.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="control_point.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="math.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
@@ -84,12 +72,6 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="state.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="control_point.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="math.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
